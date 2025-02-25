@@ -4,7 +4,7 @@
 import { Link } from "react-router-dom";
 import pricify from "./pricify";
 
-function StoreItems({ storeItems }) {
+function StoreItems({ storeItems, addItemToCart }) {
 
     return (
         <>
@@ -15,18 +15,27 @@ function StoreItems({ storeItems }) {
             ) : (
                 storeItems.map((item) => {
                     return (
-                        <Link 
-                            to={`./${item.id}`}
-                            className="item-card"
-                            key={item.id}
-                        >
-                            <div className="image-container">
-                                <img src={item.image} />
-                            </div>
-                            <p className="item-id">--ID: {item.id}--</p>
-                            <p className="item-name">{item.title}</p>
-                            <p className="item-price">{pricify(item.price)}</p>
-                        </Link>
+                        <div key={item.id} className="item-card">
+                            <button type="button" className="add-item">
+                                <span className="add-item-text"
+                                    onClick={() => addItemToCart(item.id)}
+                                >
+                                    +
+                                </span>
+                            </button>
+                            <Link 
+                                to={`./${item.id}`}
+                                className="item-card-link"
+                            >
+                                <div className="image-container">
+                                    <img src={item.image} />
+                                </div>
+                                <p className="item-id">--ID: {item.id}--</p>
+                                <p className="item-name">{item.title}</p>
+                                <p className="item-rating">Rating: {item.rating.rate} / 5 <span className="item-rating-count">({item.rating.count})</span></p>
+                                <p className="item-price">{pricify(item.price)}</p>
+                            </Link>
+                        </div>
                     )
                 })
             )}

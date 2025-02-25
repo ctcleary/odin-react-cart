@@ -57,7 +57,13 @@ h2 {
   border-radius: 10px;
 }
 
+.mini-cart {
+  display: inline-block;
+}
+
 #main-contents {
+  position: relative;
   display: grid;
   place-content: center;
 }
+

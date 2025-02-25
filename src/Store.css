@@ -11,14 +11,19 @@
 
 
 .item-card {
+    position: relative;
+
     flex: 1 1 15rem;
+    border: thin solid #ccc;
+    border-radius: 10px;
+}
+
+.item-card-link {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, min-content);
     place-items: center;
     padding: 1rem;
-    border: thin solid #ccc;
-    border-radius: 10px;
 }
 
 .item-card:hover {
@@ -26,16 +31,16 @@
     cursor: pointer;
 }
 
-
-.image-container {
+.item-card .image-container {
     display: flex;
     place-items: center;
     width: 6rem;
     height: 6rem;
     border: thin solid #ccc;
+    background: white;
 }
 
-.image-container img {
+.item-card  .image-container img {
     margin: 0 auto;
     max-width: 100%;
     max-height: 100%;
@@ -48,7 +53,43 @@
     margin: 0;
 }
 
-a.item-card {
+a.item-card-link {
     color: #213547;
 }
+a.item-card-link:hover {
+    color: #467298;
+}
 
+.item-card .add-item {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+
+    display: flex;
+    place-items: center;
+
+    background: green;
+    color: white;
+    line-height: 1ch;
+    border-radius: 50%;
+    padding: 0.5rem;
+
+    transition: width 1s 1.5s;
+}
+
+.item-card .add-item .add-item-text {
+    width: 1ch;
+    height: 1ch;
+}
+.item-card .add-item:hover {
+    background-color: lightgreen;
+    /* width: 3rem; */
+}
+
+.item-card .item-rating {
+    font-size: 0.8rem;
+}
+
+.item-card .item-rating-count {
+    font-style: italic;
+}

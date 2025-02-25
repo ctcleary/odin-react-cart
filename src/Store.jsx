@@ -4,12 +4,15 @@ import { Link, Outlet, Route, Routes } from "react-router-dom";
 import PropTypes from 'prop-types';
 import StoreItems from './StoreItems';
 import StoreItem from './StoreItem';
+import CartDrawer from './CartDrawer';
 
 // Temp
 import tempStoreItems from "./tempStoreItems";
 
-function Store() {
-    const [cartItemIds, setCartItemIds] = useState([]);
+function Store({ miniCartCount, setMiniCartCount }) {
+
+    // cartItem shape: { id: 1234, quantity: 1, itemInfo: { ...storeItem } }
+    const [cartItems, setCartItems] = useState([]);
     const [storeItems, setStoreItems] = useState([]);
     
     const [error, setError] = useState(null);
@@ -37,9 +40,38 @@ function Store() {
         }, 1000);
     }, []);
 
-    // useEffect(() => {
-    //     fetchStoreItems();
-    // }, []);
+    useEffect(() => {
+        setMiniCartCount(cartItems.length);
+    }, [cartItems, setMiniCartCount])
+
+    function addItemToCart(itemId) {
+        console.log('addItemToCart', itemId);
+        const found = cartItems.find((item) => item.id === itemId );
+        if (found) {
+            setCartItems(
+                cartItems.map((cartItem) => {
+                    return cartItem.id === itemId ? 
+                        { id: itemId, quantity: cartItem.quantity + 1, itemInfo: cartItem.itemInfo } : 
+                        cartItem;
+                })
+            )
+        } else {
+            const newCartItem = { id: itemId, quantity: 1, itemInfo: storeItems.find(item => item.id === itemId) };
+            setCartItems([
+                ...cartItems,
+                newCartItem
+            ])
+        }
+    }
+
+    function deleteItemFromCart(itemId) {
+        console.log('deleteItemFromCart', itemId);
+        setCartItems(
+            cartItems.filter((item) => {
+                return item.id !== itemId;
+            })
+        );
+    }
 
 
     
@@ -52,12 +84,22 @@ function Store() {
             <p>Store contents.</p>
             <Routes>
                 <Route path="/" 
-                    element={<StoreItems storeItems={storeItems} />}
+                    element={<StoreItems
+                        addItemToCart={addItemToCart}
+                        storeItems={storeItems} 
+                    />}
                 />
                 <Route path="/:itemId"
-                    element={<StoreItem storeItems={storeItems} />}
+                    element={<StoreItem 
+                        addItemToCart={addItemToCart}
+                        storeItems={storeItems} 
+                    />}
                 />
             </Routes>
+            <CartDrawer 
+                storeItems={storeItems}
+                cartItems={cartItems} 
+            />
         </>
     )
 }
