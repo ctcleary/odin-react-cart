@@ -1,5 +1,5 @@
 .cart-drawer {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
 
@@ -35,7 +35,7 @@
 
 .cart-drawer-items {
     overflow-y: scroll;
-    max-height: calc(100% - 4rem);
+    max-height: calc(100% - 8rem);
 }
 
 .cart-item:first-of-type {
@@ -48,6 +48,7 @@
     margin-bottom: 0.25rem;
 }
 
+/* Probably use grid or something instead of absolute positioning? */
 .cart-drawer-checkout-container {
     position: absolute;
     width: 100%;

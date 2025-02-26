@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './CartDrawer.css';
 import CartItem from './CartItem';
 
-const CartDrawer = ({ cartItems }) => {
+const CartDrawer = ({ cartItems, incrementItemQuantity, decrementItemQuantity, deleteItemFromCart }) => {
     const [isShown, setIsShown] = useState(false);
 
     function toggleShown() {
@@ -33,6 +33,9 @@ const CartDrawer = ({ cartItems }) => {
                         return (
                             <CartItem key={cartItem.id}
                                 item={cartItem}
+                                incrementItemQuantity={incrementItemQuantity}
+                                decrementItemQuantity={decrementItemQuantity}
+                                deleteItemFromCart={deleteItemFromCart}
                             /> 
                         );
                     }

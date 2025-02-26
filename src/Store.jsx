@@ -48,20 +48,47 @@ function Store({ miniCartCount, setMiniCartCount }) {
         console.log('addItemToCart', itemId);
         const found = cartItems.find((item) => item.id === itemId );
         if (found) {
-            setCartItems(
-                cartItems.map((cartItem) => {
-                    return cartItem.id === itemId ? 
-                        { id: itemId, quantity: cartItem.quantity + 1, itemInfo: cartItem.itemInfo } : 
-                        cartItem;
-                })
-            )
-        } else {
-            const newCartItem = { id: itemId, quantity: 1, itemInfo: storeItems.find(item => item.id === itemId) };
-            setCartItems([
-                ...cartItems,
-                newCartItem
-            ])
+            incrementItemQuantity(itemId);
+            return;
         }
+
+        const newCartItem = { id: itemId, quantity: 1, itemInfo: storeItems.find(item => item.id === itemId) };
+        setCartItems([
+            ...cartItems,
+            newCartItem
+        ]);
+    }
+
+    function incrementItemQuantity(itemId) {
+        setCartItems(
+            cartItems.map((item) => {
+                return item.id !== itemId ? item :
+                    { id: itemId, quantity: item.quantity + 1, itemInfo: item.itemInfo };
+            })
+        )
+    }
+    function decrementItemQuantity(itemId) {
+        console.log('decrementItemQuantity', itemId);
+        const found = cartItems.find((item) => item.id === itemId );
+
+        // If the current quantity is 1, remove it from the cart.
+        if (found.quantity === 1) {
+            console.log('quantity 1');
+            setCartItems(
+                cartItems.filter((item) => {
+                    return item.id !== itemId;
+                })
+            );
+            return;
+        }
+
+        // Otherwise just decrement the quantity
+        setCartItems(
+            cartItems.map((item) => {
+                return item.id !== itemId ? item :
+                    { id: itemId, quantity: item.quantity - 1, itemInfo: item.itemInfo };
+            })
+        )
     }
 
     function deleteItemFromCart(itemId) {
@@ -87,6 +114,9 @@ function Store({ miniCartCount, setMiniCartCount }) {
                     element={<StoreItems
                         addItemToCart={addItemToCart}
                         storeItems={storeItems} 
+                        cartItems={cartItems}
+                        incrementItemQuantity={incrementItemQuantity}
+                        decrementItemQuantity={decrementItemQuantity}
                     />}
                 />
                 <Route path="/:itemId"
@@ -98,7 +128,10 @@ function Store({ miniCartCount, setMiniCartCount }) {
             </Routes>
             <CartDrawer 
                 storeItems={storeItems}
-                cartItems={cartItems} 
+                cartItems={cartItems}
+                incrementItemQuantity={incrementItemQuantity}
+                decrementItemQuantity={decrementItemQuantity}
+                deleteItemFromCart={deleteItemFromCart}
             />
         </>
     )

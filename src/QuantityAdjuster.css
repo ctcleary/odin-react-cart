@@ -1,0 +1,26 @@
+.quantity-widget button {
+    display: inline-block;
+    padding: 0.05rem 0;
+    width: 1rem;
+    border-radius: 4px;
+    background: rgb(241, 241, 246)
+}
+.quantity-widget button.quantity-decrement {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.quantity-widget button.quantity-increment {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.quantity-widget .quantity-value {
+    display: inline-block;
+    background-color: white;
+    padding: 0 0.25rem;
+}
+
+
+.quantity-widget .quantity-delete {
+    margin-left: 1rem;
+}

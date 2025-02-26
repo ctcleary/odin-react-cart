@@ -1,7 +1,8 @@
 import './CartItem.css';
 import pricify from "./pricify";
+import QuantityAdjuster from './QuantityAdjuster';
 
-function CartItem({ item }) {
+function CartItem({ item, incrementItemQuantity, decrementItemQuantity, deleteItemFromCart }) {
     
     return (
         <div className="cart-item">            
@@ -15,12 +16,28 @@ function CartItem({ item }) {
                 {/* <div className="cart-item-description">{item.description}</div> */}
             </div>
             <div className="cart-item-price-info">
-                <div className="cart-item-quantity-widget">
-                    <button className="cart-item-quantity-decrement" type="button">-</button>
+                <QuantityAdjuster
+                    itemId={item.id}
+                    currentQuantity={item.quantity}
+                    incrementItemQuantity={incrementItemQuantity}
+                    decrementItemQuantity={decrementItemQuantity}
+                    deleteItemFromCart={deleteItemFromCart}
+                />
+                {/* <div className="cart-item-quantity-widget">
+                    <button className="cart-item-quantity-decrement" 
+                        type="button"
+                        onClick={() => { decrementItemQuantity(item.id) }}
+                        >-</button>
                     <div className="cart-item-quantity">{item.quantity}</div>
-                    <button className="cart-item-quantity-increment" type="button">+</button>
-                    <button className="cart-item-quantity-delete" type="button">X</button>
-                </div>
+                    <button className="cart-item-quantity-increment"
+                        type="button"
+                        onClick={() => { incrementItemQuantity(item.id) }}
+                        >+</button>
+                    <button className="cart-item-quantity-delete"
+                        type="button"
+                        onClick={() => { deleteItemFromCart(item.id) }}
+                        >X</button>
+                </div> */}
                 <div className="cart-item-price">{pricify(item.itemInfo.price * item.quantity)}</div>
             </div>
         </div>

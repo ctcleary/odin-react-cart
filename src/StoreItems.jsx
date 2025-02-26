@@ -3,8 +3,9 @@
 
 import { Link } from "react-router-dom";
 import pricify from "./pricify";
+import QuantityAdjuster from "./QuantityAdjuster";
 
-function StoreItems({ storeItems, addItemToCart }) {
+function StoreItems({ storeItems, cartItems, addItemToCart, incrementItemQuantity, decrementItemQuantity, deleteItemFromCart }) {
 
     return (
         <>
@@ -16,13 +17,25 @@ function StoreItems({ storeItems, addItemToCart }) {
                 storeItems.map((item) => {
                     return (
                         <div key={item.id} className="item-card">
-                            <button type="button" className="add-item">
-                                <span className="add-item-text"
-                                    onClick={() => addItemToCart(item.id)}
-                                >
-                                    +
-                                </span>
-                            </button>
+                            
+                            { cartItems.find(cartItem=>cartItem.id===item.id)?.quantity > 0 ? (
+                                // <>TEMP + and -</>
+                                <QuantityAdjuster 
+                                    itemId={item.id}
+                                    currentQuantity={cartItems.find(cartItem=>cartItem.id===item.id)?.quantity || 0}
+                                    incrementItemQuantity={incrementItemQuantity}
+                                    decrementItemQuantity={decrementItemQuantity}
+                                    deleteItemFromCart={deleteItemFromCart}
+                                />
+                            ): (
+                                <button type="button" className="add-item">
+                                    <span className="add-item-text"
+                                        onClick={() => addItemToCart(item.id)}
+                                    >
+                                        +
+                                    </span>
+                                </button>
+                            )}
                             <Link 
                                 to={`./${item.id}`}
                                 className="item-card-link"
