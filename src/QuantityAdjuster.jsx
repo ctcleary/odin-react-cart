@@ -1,7 +1,14 @@
 import './QuantityAdjuster.css';
 // import { useParams } from "react-router-dom";
 
-function QuantityAdjuster({ itemId, currentQuantity, incrementItemQuantity, decrementItemQuantity, deleteItemFromCart }) {
+function QuantityAdjuster({
+    itemId, 
+    currentQuantity, 
+    incrementItemQuantity, 
+    decrementItemQuantity, 
+    deleteItemFromCart, 
+    withDelete 
+}) {
     
     return (
         <div className="quantity-widget">
@@ -14,10 +21,12 @@ function QuantityAdjuster({ itemId, currentQuantity, incrementItemQuantity, decr
                 type="button"
                 onClick={() => { incrementItemQuantity(itemId) }}
                 >+</button>
-            <button className="quantity-delete"
-                type="button"
-                onClick={() => { deleteItemFromCart(itemId) }}
-                >X</button>
+            { withDelete && (
+                <button className="quantity-delete"
+                    type="button"
+                    onClick={() => { deleteItemFromCart(itemId) }}
+                    >X</button>
+            )}
         </div>
     )
 }

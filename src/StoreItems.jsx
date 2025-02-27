@@ -17,7 +17,6 @@ function StoreItems({ storeItems, cartItems, addItemToCart, incrementItemQuantit
                 storeItems.map((item) => {
                     return (
                         <div key={item.id} className="item-card">
-                            
                             { cartItems.find(cartItem=>cartItem.id===item.id)?.quantity > 0 ? (
                                 // <>TEMP + and -</>
                                 <QuantityAdjuster 
@@ -26,6 +25,7 @@ function StoreItems({ storeItems, cartItems, addItemToCart, incrementItemQuantit
                                     incrementItemQuantity={incrementItemQuantity}
                                     decrementItemQuantity={decrementItemQuantity}
                                     deleteItemFromCart={deleteItemFromCart}
+                                    withDelete={false}
                                 />
                             ): (
                                 <button type="button" className="add-item">

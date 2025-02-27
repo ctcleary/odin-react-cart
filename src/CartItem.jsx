@@ -22,6 +22,7 @@ function CartItem({ item, incrementItemQuantity, decrementItemQuantity, deleteIt
                     incrementItemQuantity={incrementItemQuantity}
                     decrementItemQuantity={decrementItemQuantity}
                     deleteItemFromCart={deleteItemFromCart}
+                    withDelete={true}
                 />
                 {/* <div className="cart-item-quantity-widget">
                     <button className="cart-item-quantity-decrement" 

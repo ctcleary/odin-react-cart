@@ -93,3 +93,18 @@ a.item-card-link:hover {
 .item-card .item-rating-count {
     font-style: italic;
 }
+
+.item-card .quantity-widget  {
+    position: absolute;
+    right: 0.25rem;
+    top: 0.25rem;
+    text-align: right;
+    color: white;
+}
+.item-card .quantity-widget button {
+    background: green;
+}
+
+.item-card .quantity-widget .quantity-value {
+    background: rgb(11, 180, 11);
+}

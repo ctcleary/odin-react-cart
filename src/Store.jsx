@@ -117,6 +117,7 @@ function Store({ miniCartCount, setMiniCartCount }) {
                         cartItems={cartItems}
                         incrementItemQuantity={incrementItemQuantity}
                         decrementItemQuantity={decrementItemQuantity}
+                        deleteItemFromCart={deleteItemFromCart}
                     />}
                 />
                 <Route path="/:itemId"
