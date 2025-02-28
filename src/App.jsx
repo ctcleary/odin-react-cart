@@ -5,7 +5,7 @@ import Home from "./Home";
 import Store from "./Store";
 import Contact from "./Contact";
 import ErrorPage from "./ErrorPage";
-import CartCounter from './CartCounter';
+import MiniCart from './MiniCart';
 
 // const useFetchedStoreItems = () => {
 //   const [itemData, setItemData] = useState([]);
@@ -54,7 +54,7 @@ function App() {
                             <li><Link to="/contact">Contact</Link></li>
                         </ul>
                     </nav>
-                    <CartCounter miniCartCount={miniCartCount} />
+                    <MiniCart miniCartCount={miniCartCount} />
                 </div>
             </div>
             <div id="main-container">

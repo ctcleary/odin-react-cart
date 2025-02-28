@@ -1,14 +1,5 @@
 function pricify(num) {
-
-    let numStr = ''+num;
-    const dotIdx = numStr.indexOf('.');
-    if (dotIdx === -1) {
-        numStr = numStr +'.00';
-    } else if (numStr.slice(dotIdx+1).length === 1) {
-        numStr = numStr + '0';
-    }
-    //Todo, add comma for over 1000?
-    return '$'+numStr;
+    return parseFloat(num).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 }
 
 export default pricify;
