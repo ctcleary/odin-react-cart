@@ -41,7 +41,9 @@ function Store({ miniCartCount, setMiniCartCount }) {
     }, []);
 
     useEffect(() => {
-        setMiniCartCount(cartItems.length);
+        setMiniCartCount(cartItems.reduce((acc, item) => {
+            return acc + item.quantity;    
+        }, 0));
     }, [cartItems, setMiniCartCount])
 
     function addItemToCart(itemId) {
@@ -80,7 +82,7 @@ function Store({ miniCartCount, setMiniCartCount }) {
         if (!found) {
             return;
         }
-        
+
         // If the current quantity is 1, remove it from the cart.
         if (found.quantity === 1) {
             console.log('quantity 1');
