@@ -7,26 +7,29 @@ function QuantityAdjuster({
     incrementItemQuantity, 
     decrementItemQuantity, 
     deleteItemFromCart, 
-    withDelete 
+    withDelete,
+    isLarge
 }) {
     
     return (
-        <div className="quantity-widget">
+        <div className={ isLarge ? "quantity-widget quantity-widget-large" : "quantity-widget" }>
+        { withDelete && (
+            <button className="quantity-delete"
+                type="button"
+                onClick={() => { deleteItemFromCart(itemId) }}
+                >X</button>
+        )}
             <button className="quantity-decrement" 
                 type="button"
                 onClick={() => { decrementItemQuantity(itemId) }}
-                >-</button>
+                >
+                    { !withDelete && currentQuantity === 1 ? <>X</> : <>-</> }
+                </button>
             <div className="quantity-value">{currentQuantity}</div>
             <button className="quantity-increment"
                 type="button"
                 onClick={() => { incrementItemQuantity(itemId) }}
                 >+</button>
-            { withDelete && (
-                <button className="quantity-delete"
-                    type="button"
-                    onClick={() => { deleteItemFromCart(itemId) }}
-                    >X</button>
-            )}
         </div>
     )
 }

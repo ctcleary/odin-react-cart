@@ -23,5 +23,16 @@
 
 
 .quantity-widget .quantity-delete {
-    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.quantity-widget.quantity-widget-large button {
+    width: 4.5rem;
+    padding: 1rem;
+    border-radius: 4px;
+}
+.quantity-widget.quantity-widget-large .quantity-value {
+    font-size: 2rem;
+    padding: 0 1rem;
+    line-height: 2rem;
 }

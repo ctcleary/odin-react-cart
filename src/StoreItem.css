@@ -1,0 +1,29 @@
+.store-item {
+    display: block;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 980px;
+    text-align: left;   
+}
+
+.store-item-image-container {
+    display: flex;
+    place-items: center;
+
+    max-width: 26rem;
+    max-height: 26rem;
+    
+    border: thin solid #ccc;
+}
+
+.store-item-image-container img {
+    margin: 0 auto;
+    max-width: 26rem;
+    max-height: 26rem;
+    z-index: -1;
+}
+
+/* .quantity-widget {
+    text-align: right;
+} */

@@ -60,6 +60,12 @@ function Store({ miniCartCount, setMiniCartCount }) {
     }
 
     function incrementItemQuantity(itemId) {
+        const found = cartItems.find((item) => item.id === itemId );
+        if (!found) {
+            addItemToCart(itemId);
+            return;
+        }
+
         setCartItems(
             cartItems.map((item) => {
                 return item.id !== itemId ? item :
@@ -71,6 +77,10 @@ function Store({ miniCartCount, setMiniCartCount }) {
         console.log('decrementItemQuantity', itemId);
         const found = cartItems.find((item) => item.id === itemId );
 
+        if (!found) {
+            return;
+        }
+        
         // If the current quantity is 1, remove it from the cart.
         if (found.quantity === 1) {
             console.log('quantity 1');
@@ -107,8 +117,6 @@ function Store({ miniCartCount, setMiniCartCount }) {
 
     return (
         <>
-            <h1>Store Page</h1>
-            <p>Store contents.</p>
             <Routes>
                 <Route path="/" 
                     element={<StoreItems
@@ -124,6 +132,10 @@ function Store({ miniCartCount, setMiniCartCount }) {
                     element={<StoreItem 
                         addItemToCart={addItemToCart}
                         storeItems={storeItems} 
+                        cartItems={cartItems}
+                        incrementItemQuantity={incrementItemQuantity}
+                        decrementItemQuantity={decrementItemQuantity}
+                        deleteItemFromCart={deleteItemFromCart}
                     />}
                 />
             </Routes>
