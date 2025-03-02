@@ -9,7 +9,6 @@ function StoreItems({ storeItems, cartItems, addItemToCart, incrementItemQuantit
 
     return (
         <>
-        <p>(Store items...)</p>
         <div className="store-items-gallery">
             { !storeItems || !storeItems.length ? (
                 <p>Loading...</p>

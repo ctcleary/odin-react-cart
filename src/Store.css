@@ -71,15 +71,12 @@ a.item-card-link:hover {
     background: green;
     color: white;
     line-height: 1ch;
-    border-radius: 50%;
+    border-radius: 6px;
     padding: 0.5rem;
-
-    transition: width 1s 1.5s;
 }
 
 .item-card .add-item .add-item-text {
-    width: 1ch;
-    height: 1ch;
+    display: block;
 }
 .item-card .add-item:hover {
     background-color: lightgreen;
@@ -103,6 +100,7 @@ a.item-card-link:hover {
 }
 .item-card .quantity-widget button {
     background: green;
+    color: white;
 }
 
 .item-card .quantity-widget .quantity-value {

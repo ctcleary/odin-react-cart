@@ -1,0 +1,5 @@
+.mini-cart {
+    display: block;
+    text-align: right;
+    max-width: var(--max-width);
+}

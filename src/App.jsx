@@ -54,7 +54,6 @@ function App() {
                             <li><Link to="/contact">Contact</Link></li>
                         </ul>
                     </nav>
-                    <MiniCart miniCartCount={miniCartCount} />
                 </div>
             </div>
             <div id="main-container">

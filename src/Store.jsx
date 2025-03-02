@@ -8,12 +8,15 @@ import CartDrawer from './CartDrawer';
 
 // Temp
 import tempStoreItems from "./tempStoreItems";
+import MiniCart from './MiniCart';
 
 function Store({ miniCartCount, setMiniCartCount }) {
 
     // cartItem shape: { id: 1234, quantity: 1, itemInfo: { ...storeItem } }
     const [cartItems, setCartItems] = useState([]);
     const [storeItems, setStoreItems] = useState([]);
+
+    const [attemptedLoadCartItems, setAttemptedLoadCartItems] = useState(false);
     
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -37,6 +40,8 @@ function Store({ miniCartCount, setMiniCartCount }) {
         setTimeout(() => {
             console.log('set temp store items');
             setStoreItems(tempStoreItems);
+            loadStoredCartItems(tempStoreItems);
+            setAttemptedLoadCartItems(true);
         }, 1000);
     }, []);
 
@@ -45,6 +50,41 @@ function Store({ miniCartCount, setMiniCartCount }) {
             return acc + item.quantity;    
         }, 0));
     }, [cartItems, setMiniCartCount])
+
+    useEffect(() => {
+        if (attemptedLoadCartItems) {
+            console.log('storeCartItems useEffect');
+            storeCartItems();
+        }
+    }, [cartItems]);
+
+    function storeCartItems() {
+        localStorage.setItem(
+            'cartItems', 
+            JSON.stringify(cartItems.map((cartItem) => {
+                return { id: cartItem.id, quantity: cartItem.quantity};
+            }))
+        );
+    }
+    
+    function loadStoredCartItems(storeItems) {
+        console.log('loadStoredCartItems');
+        const stored = localStorage.getItem('cartItems');
+        if (!stored) {
+            return;
+        }
+
+        const parsedStored = JSON.parse(stored);
+        console.log('loadStoredCartItems doLoad', parsedStored);
+        const loadedCartItems = [];
+        parsedStored.forEach((storedItem) => {
+            loadedCartItems.push(
+                { id: storedItem.id, quantity: storedItem.quantity, itemInfo: storeItems.find(item => item.id === storedItem.id) }
+            );
+        });
+
+        setCartItems(loadedCartItems);
+    }
 
     function addItemToCart(itemId) {
         console.log('addItemToCart', itemId);
@@ -75,6 +115,7 @@ function Store({ miniCartCount, setMiniCartCount }) {
             })
         )
     }
+
     function decrementItemQuantity(itemId) {
         console.log('decrementItemQuantity', itemId);
         const found = cartItems.find((item) => item.id === itemId );
@@ -119,6 +160,7 @@ function Store({ miniCartCount, setMiniCartCount }) {
 
     return (
         <>
+            <MiniCart miniCartCount={miniCartCount} />
             <Routes>
                 <Route path="/" 
                     element={<StoreItems
