@@ -9,6 +9,7 @@ import CartDrawer from './CartDrawer';
 // Temp
 import tempStoreItems from "./tempStoreItems";
 import MiniCart from './MiniCart';
+import Checkout from './Checkout';
 
 function Store({ miniCartCount, setMiniCartCount }) {
 
@@ -176,6 +177,14 @@ function Store({ miniCartCount, setMiniCartCount }) {
                     element={<StoreItem 
                         addItemToCart={addItemToCart}
                         storeItems={storeItems} 
+                        cartItems={cartItems}
+                        incrementItemQuantity={incrementItemQuantity}
+                        decrementItemQuantity={decrementItemQuantity}
+                        deleteItemFromCart={deleteItemFromCart}
+                    />}
+                />
+                <Route path="/checkout"
+                    element={<Checkout
                         cartItems={cartItems}
                         incrementItemQuantity={incrementItemQuantity}
                         decrementItemQuantity={decrementItemQuantity}

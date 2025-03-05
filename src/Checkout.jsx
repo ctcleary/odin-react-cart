@@ -4,9 +4,6 @@ import CartItem from "./CartItem";
 
 function Checkout({
         cartItems,
-        setCartItems,
-        storeItems,
-        addItemToCart,
         incrementItemQuantity,
         decrementItemQuantity,
         deleteItemFromCart,

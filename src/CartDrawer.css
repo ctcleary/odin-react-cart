@@ -52,12 +52,17 @@
 .cart-drawer-checkout-container {
     position: absolute;
     width: 100%;
-    padding: 0.5rem;
+    padding: 0;
     bottom: 0;
     right: 0;
     background: grey;
 }
 
-.cart-drawer-checkout {
+.cart-drawer-total {
+    padding: 0.5rem;
+    background: white;
+}
 
+.cart-drawer-checkout {
+    padding: 0.5rem;
 }
