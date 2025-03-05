@@ -1,22 +1,12 @@
 import { useState } from 'react';
 import './CartDrawer.css';
 import CartItem from './CartItem';
-import pricify from './pricify';
-import { Link } from 'react-router-dom';
 
 const CartDrawer = ({ cartItems, incrementItemQuantity, decrementItemQuantity, deleteItemFromCart }) => {
     const [isShown, setIsShown] = useState(false);
 
     function toggleShown() {
         setIsShown(!isShown);
-    }
-
-    function getTotalCost() {
-        const total = cartItems.reduce((acc, item) => {
-            return acc + (item.itemInfo.price * item.quantity);
-        }, 0);
-
-        return pricify(total);
     }
 
     return (
@@ -53,11 +43,7 @@ const CartDrawer = ({ cartItems, incrementItemQuantity, decrementItemQuantity, d
             }
             </div>
             <div className="cart-drawer-checkout-container">
-                <div className="cart-drawer-total">Total: {getTotalCost()}</div>
-                <div className="cart-drawer-checkout">
-                    <button className="cart-drawer-checkout-button" type="button">Checkout</button>
-                    <Link to="/checkout">Checkout</Link>
-                </div>
+                <button className="cart-drawer-checkout" type="button">Checkout</button>
             </div>
         </div>
     );
