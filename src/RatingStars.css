@@ -1,0 +1,30 @@
+.rating-stars {
+    position: relative;
+    place-self: start;
+    display: block;
+    height: 20px;
+    width: 80px;
+    text-align: left;
+}
+
+.rating-stars-empty,
+.rating-stars-full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.rating-stars-count {
+    position: absolute;
+    font-size: 0.9rem;
+    left: 86px;
+    font-style: italic;
+}
+
+
+.rating-stars-full {
+    background:url('./assets/stars_full.png');
+    height: 20px;
+}

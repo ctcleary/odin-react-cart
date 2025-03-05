@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import pricify from "./pricify";
 import QuantityAdjuster from "./QuantityAdjuster";
 import CartDrawer from "./CartDrawer";
+import RatingStars from "./RatingStars";
 
 function StoreItems({ storeItems, cartItems, addItemToCart, incrementItemQuantity, decrementItemQuantity, deleteItemFromCart }) {
 
@@ -45,7 +46,8 @@ function StoreItems({ storeItems, cartItems, addItemToCart, incrementItemQuantit
                                 </div>
                                 <p className="item-id">--ID: {item.id}--</p>
                                 <p className="item-name">{item.title}</p>
-                                <p className="item-rating">Rating: {item.rating.rate} / 5 <span className="item-rating-count">({item.rating.count})</span></p>
+                                {/* <p className="item-rating">Rating: {item.rating.rate} / 5 <span className="item-rating-count">({item.rating.count})</span></p> */}
+                                <RatingStars rating={item.rating.rate} ratingCount={item.rating.count} />
                                 <p className="item-price">{pricify(item.price)}</p>
                             </Link>
                         </div>
