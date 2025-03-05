@@ -1,5 +1,5 @@
-// import { useParams } from "react-router-dom";
-
+import './Checkout.css';
+import getTotalPrice from './getTotalPrice';
 import CartItem from "./CartItem";
 
 function Checkout({
@@ -36,6 +36,12 @@ function Checkout({
                     }
                 )
             }
+            </div>
+            <div className="checkout-total">
+                Total: {getTotalPrice(cartItems)}
+            </div>
+            <div className="checkout-checkout">
+                <button type="button">Checkout</button>
             </div>
         </>
     )

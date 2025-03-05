@@ -192,13 +192,13 @@ function Store({ miniCartCount, setMiniCartCount }) {
                     />}
                 />
             </Routes>
-            <CartDrawer 
+            {/* <CartDrawer 
                 storeItems={storeItems}
                 cartItems={cartItems}
                 incrementItemQuantity={incrementItemQuantity}
                 decrementItemQuantity={decrementItemQuantity}
                 deleteItemFromCart={deleteItemFromCart}
-            />
+            /> */}
         </>
     )
 }

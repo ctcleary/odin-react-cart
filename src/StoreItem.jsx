@@ -1,3 +1,4 @@
+import CartDrawer from './CartDrawer';
 import QuantityAdjuster from './QuantityAdjuster';
 import './StoreItem.css';
 // import { useEffect } from "react";
@@ -44,6 +45,13 @@ function StoreItem({
                     </div>
                 </div>
             )}
+            <CartDrawer
+                storeItems={storeItems}
+                cartItems={cartItems}
+                incrementItemQuantity={incrementItemQuantity}
+                decrementItemQuantity={decrementItemQuantity}
+                deleteItemFromCart={deleteItemFromCart}
+            />
         </>
     )
 }

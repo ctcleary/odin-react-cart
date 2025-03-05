@@ -4,6 +4,7 @@
 import { Link } from "react-router-dom";
 import pricify from "./pricify";
 import QuantityAdjuster from "./QuantityAdjuster";
+import CartDrawer from "./CartDrawer";
 
 function StoreItems({ storeItems, cartItems, addItemToCart, incrementItemQuantity, decrementItemQuantity, deleteItemFromCart }) {
 
@@ -52,6 +53,13 @@ function StoreItems({ storeItems, cartItems, addItemToCart, incrementItemQuantit
                 })
             )}
         </div>
+        <CartDrawer
+                storeItems={storeItems}
+                cartItems={cartItems}
+                incrementItemQuantity={incrementItemQuantity}
+                decrementItemQuantity={decrementItemQuantity}
+                deleteItemFromCart={deleteItemFromCart}
+            />
         </>
     )
 }
