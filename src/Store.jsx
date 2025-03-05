@@ -10,148 +10,27 @@ import CartDrawer from './CartDrawer';
 import tempStoreItems from "./tempStoreItems";
 import MiniCart from './MiniCart';
 
-function Store({ miniCartCount, setMiniCartCount }) {
+function Store({
+        cartItems,
+        setCartItems,
+        storeItems,
+        addItemToCart,
+        incrementItemQuantity,
+        decrementItemQuantity,
+        deleteItemFromCart,
+    }) {
 
     // cartItem shape: { id: 1234, quantity: 1, itemInfo: { ...storeItem } }
-    const [cartItems, setCartItems] = useState([]);
-    const [storeItems, setStoreItems] = useState([]);
+    // const [cartItems, setCartItems] = useState([]);
+    // const [storeItems, setStoreItems] = useState([]);
 
-    const [attemptedLoadCartItems, setAttemptedLoadCartItems] = useState(false);
+    // const [attemptedLoadCartItems, setAttemptedLoadCartItems] = useState(false);
     
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
-    
-    useEffect(() => {
-        // fetch('https://fakestoreapi.com/products')
-        //     .then((response) => {
-        //         if (response.stats >= 400) {
-        //         throw new Error('Server error');
-        //         }
-        
-        //         return response.json();
-        //     })
-        //     .then((json) => {
-        //         console.log('itemData json', json);
-        //         setStoreItems(json);
-        //     })
-        //     .catch((error) => { setError(error) })
-        //     .finally(() => { setLoading(false) });
+    // const [error, setError] = useState(null);
+    // const [loading, setLoading] = useState(true);
 
-        setTimeout(() => {
-            console.log('set temp store items');
-            setStoreItems(tempStoreItems);
-            loadStoredCartItems(tempStoreItems);
-            setAttemptedLoadCartItems(true);
-        }, 1000);
-    }, []);
 
-    useEffect(() => {
-        setMiniCartCount(cartItems.reduce((acc, item) => {
-            return acc + item.quantity;    
-        }, 0));
-    }, [cartItems, setMiniCartCount])
 
-    useEffect(() => {
-        if (attemptedLoadCartItems) {
-            console.log('storeCartItems useEffect');
-            storeCartItems();
-        }
-    }, [cartItems]);
-
-    function storeCartItems() {
-        localStorage.setItem(
-            'cartItems', 
-            JSON.stringify(cartItems.map((cartItem) => {
-                return { id: cartItem.id, quantity: cartItem.quantity};
-            }))
-        );
-    }
-    
-    function loadStoredCartItems(storeItems) {
-        console.log('loadStoredCartItems');
-        const stored = localStorage.getItem('cartItems');
-        if (!stored) {
-            return;
-        }
-
-        const parsedStored = JSON.parse(stored);
-        console.log('loadStoredCartItems doLoad', parsedStored);
-        const loadedCartItems = [];
-        parsedStored.forEach((storedItem) => {
-            loadedCartItems.push(
-                { id: storedItem.id, quantity: storedItem.quantity, itemInfo: storeItems.find(item => item.id === storedItem.id) }
-            );
-        });
-
-        setCartItems(loadedCartItems);
-    }
-
-    function addItemToCart(itemId) {
-        console.log('addItemToCart', itemId);
-        const found = cartItems.find((item) => item.id === itemId );
-        if (found) {
-            incrementItemQuantity(itemId);
-            return;
-        }
-
-        const newCartItem = { id: itemId, quantity: 1, itemInfo: storeItems.find(item => item.id === itemId) };
-        setCartItems([
-            ...cartItems,
-            newCartItem
-        ]);
-    }
-
-    function incrementItemQuantity(itemId) {
-        const found = cartItems.find((item) => item.id === itemId );
-        if (!found) {
-            addItemToCart(itemId);
-            return;
-        }
-
-        setCartItems(
-            cartItems.map((item) => {
-                return item.id !== itemId ? item :
-                    { id: itemId, quantity: item.quantity + 1, itemInfo: item.itemInfo };
-            })
-        )
-    }
-
-    function decrementItemQuantity(itemId) {
-        console.log('decrementItemQuantity', itemId);
-        const found = cartItems.find((item) => item.id === itemId );
-
-        if (!found) {
-            return;
-        }
-
-        // If the current quantity is 1, remove it from the cart.
-        if (found.quantity === 1) {
-            console.log('quantity 1');
-            setCartItems(
-                cartItems.filter((item) => {
-                    return item.id !== itemId;
-                })
-            );
-            return;
-        }
-
-        // Otherwise just decrement the quantity
-        setCartItems(
-            cartItems.map((item) => {
-                return item.id !== itemId ? item :
-                    { id: itemId, quantity: item.quantity - 1, itemInfo: item.itemInfo };
-            })
-        )
-    }
-
-    function deleteItemFromCart(itemId) {
-        console.log('deleteItemFromCart', itemId);
-        setCartItems(
-            cartItems.filter((item) => {
-                return item.id !== itemId;
-            })
-        );
-    }
 
 
     
@@ -160,7 +39,6 @@ function Store({ miniCartCount, setMiniCartCount }) {
 
     return (
         <>
-            <MiniCart miniCartCount={miniCartCount} />
             <Routes>
                 <Route path="/" 
                     element={<StoreItems
