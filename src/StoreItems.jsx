@@ -6,6 +6,7 @@ import pricify from "./pricify";
 import QuantityAdjuster from "./QuantityAdjuster";
 import CartDrawer from "./CartDrawer";
 import RatingStars from "./RatingStars";
+import PropTypes from "prop-types";
 
 function StoreItems({
     storeItems,
@@ -73,6 +74,17 @@ function StoreItems({
             />
         </>
     )
+}
+
+StoreItems.propTypes = {
+    storeItems: PropTypes.array,
+    cartItems: PropTypes.array,
+    addItemToCart: PropTypes.func,
+    incrementItemQuantity: PropTypes.func,
+    decrementItemQuantity: PropTypes.func,
+    deleteItemFromCart: PropTypes.func,
+    drawerIsShown: PropTypes.bool,
+    setDrawerIsShown: PropTypes.func,
 }
 
 export default StoreItems;

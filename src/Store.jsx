@@ -25,11 +25,13 @@ import tempStoreItems from "./tempStoreItems";
     },
 */
 
-function Store({ miniCartCount, setMiniCartCount }) {
+function Store() {
 
     // cartItem shape: { id: 1234, quantity: 1, itemInfo: { ...storeItem } }
     const [cartItems, setCartItems] = useState([]);
     const [storeItems, setStoreItems] = useState([]);
+
+    const [miniCartCount, setMiniCartCount] = useState(0);
 
     const [attemptedLoadCartItems, setAttemptedLoadCartItems] = useState(false);
 
@@ -179,7 +181,6 @@ function Store({ miniCartCount, setMiniCartCount }) {
     return (
         <>
             <MiniCart
-                storeItems={storeItems}
                 miniCartCount={miniCartCount}
                 drawerIsShown={drawerIsShown}
                 setDrawerIsShown={setDrawerIsShown} 

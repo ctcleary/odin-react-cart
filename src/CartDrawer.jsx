@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import './CartDrawer.css';
 import CartItem from './CartItem';
 import getTotalPrice from './getTotalPrice';
@@ -53,5 +54,14 @@ const CartDrawer = ({
         </div>
     );
 };
+
+CartDrawer.propTypes = {
+    cartItems: PropTypes.array,
+    incrementItemQuantity: PropTypes.func,
+    decrementItemQuantity: PropTypes.func,
+    deleteItemFromCart: PropTypes.func,
+    drawerIsShown: PropTypes.bool,
+    setDrawerIsShown: PropTypes.func,
+}
 
 export default CartDrawer;

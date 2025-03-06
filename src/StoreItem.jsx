@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import CartDrawer from './CartDrawer';
 import QuantityAdjuster from './QuantityAdjuster';
 import RatingStars from './RatingStars';
@@ -59,6 +60,16 @@ function StoreItem({
             />
         </>
     )
+}
+
+StoreItem.propTypes = {
+    storeItems: PropTypes.array,
+    cartItems: PropTypes.array,
+    incrementItemQuantity: PropTypes.func,
+    decrementItemQuantity: PropTypes.func,
+    deleteItemFromCart: PropTypes.func,
+    drawerIsShown: PropTypes.bool,
+    setDrawerIsShown: PropTypes.func,
 }
 
 export default StoreItem;

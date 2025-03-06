@@ -2,6 +2,7 @@
 import './RatingStars.css';
 import starsFull from './assets/stars_full.png';
 import starsEmpty from './assets/stars_empty.png';
+import PropTypes from 'prop-types';
 
 function RatingStars({ rating, ratingCount }) {
 
@@ -17,6 +18,11 @@ function RatingStars({ rating, ratingCount }) {
             <span className="rating-stars-count">({ratingCount})</span>
         </div>
     )
+}
+
+RatingStars.propTypes = {
+    rating: PropTypes.number,
+    ratingCount: PropTypes.number,
 }
 
 export default RatingStars;

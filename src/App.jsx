@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import "./App.css";
 import { Route, Routes, Link } from "react-router-dom";
 import Home from "./Home";
@@ -7,8 +6,6 @@ import Contact from "./Contact";
 import ErrorPage from "./ErrorPage";
 
 function App() {
-    const [miniCartCount, setMiniCartCount] = useState(0);
-
     return (
         <div id="wrapper">
             <header id="top-header-container">
@@ -33,10 +30,7 @@ function App() {
                         <Route path="*" element={<ErrorPage />} />
                         <Route path="/" element={<Home />} />
                         <Route path="/store/*"
-                            element={<Store 
-                                miniCartCount={miniCartCount}
-                                setMiniCartCount={setMiniCartCount}
-                            />} 
+                            element={<Store />} 
                         />
                         <Route path="/contact" element={<Contact />} />
                     </Routes>

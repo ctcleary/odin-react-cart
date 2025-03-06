@@ -1,6 +1,7 @@
 import './Checkout.css';
 import getTotalPrice from './getTotalPrice';
 import CartItem from "./CartItem";
+import PropTypes from 'prop-types';
 
 function Checkout({
         cartItems,
@@ -45,6 +46,13 @@ function Checkout({
             </div>
         </>
     )
+}
+
+Checkout.propTypes = {
+    cartItems: PropTypes.array,
+    incrementItemQuantity: PropTypes.func,
+    decrementItemQuantity: PropTypes.func,
+    deleteItemFromCart: PropTypes.func,
 }
 
 export default Checkout;

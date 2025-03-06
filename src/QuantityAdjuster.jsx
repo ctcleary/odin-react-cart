@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import './QuantityAdjuster.css';
 // import { useParams } from "react-router-dom";
 
@@ -32,6 +33,16 @@ function QuantityAdjuster({
                 >+</button>
         </div>
     )
+}
+
+QuantityAdjuster.propTypes = {
+    itemId: PropTypes.number,
+    currentQuantity: PropTypes.number,
+    incrementItemQuantity: PropTypes.func, 
+    decrementItemQuantity: PropTypes.func, 
+    deleteItemFromCart: PropTypes.func, 
+    withDelete: PropTypes.bool,
+    isLarge: PropTypes.bool
 }
 
 export default QuantityAdjuster;

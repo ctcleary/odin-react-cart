@@ -1,8 +1,8 @@
+import PropTypes from 'prop-types';
 import './MiniCart.css';
 // import { Link } from "react-router-dom";
 
 const MiniCart = ({
-    storeItems,
     miniCartCount,
     drawerIsShown,
     setDrawerIsShown,
@@ -13,15 +13,17 @@ const MiniCart = ({
 
     return (
         <div className="mini-cart">
-            { !storeItems.length ? (
-                <></>
-            ) : (
             <button type="button" onClick={togggleIsShown}>
                 Cart ({miniCartCount})
             </button>
-            )}
         </div>
     );
 };
+
+MiniCart.propTypes = {
+    miniCartCount: PropTypes.func,
+    drawerIsShown: PropTypes.bool,
+    setDrawerIsShown: PropTypes.func,
+}
 
 export default MiniCart;
