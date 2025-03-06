@@ -28,7 +28,7 @@ function Store({ miniCartCount, setMiniCartCount }) {
         fetch('https://fakestoreapi.com/products')
             .then((response) => {
                 if (response.stats >= 400) {
-                throw new Error('Server error');
+                    throw new Error('Server error');
                 }
         
                 return response.json();
@@ -58,7 +58,6 @@ function Store({ miniCartCount, setMiniCartCount }) {
 
     useEffect(() => {
         if (attemptedLoadCartItems) {
-            console.log('storeCartItems useEffect');
             storeCartItems();
         }
     }, [cartItems]);
@@ -73,14 +72,13 @@ function Store({ miniCartCount, setMiniCartCount }) {
     }
     
     function loadStoredCartItems(storeItems) {
-        console.log('loadStoredCartItems');
+        // console.log('loadStoredCartItems');
         const stored = localStorage.getItem('cartItems');
         if (!stored) {
             return;
         }
 
         const parsedStored = JSON.parse(stored);
-        console.log('loadStoredCartItems doLoad', parsedStored);
         const loadedCartItems = [];
         parsedStored.forEach((storedItem) => {
             loadedCartItems.push(
@@ -92,7 +90,7 @@ function Store({ miniCartCount, setMiniCartCount }) {
     }
 
     function addItemToCart(itemId) {
-        console.log('addItemToCart', itemId);
+        // console.log('addItemToCart', itemId);
         const found = cartItems.find((item) => item.id === itemId );
         if (found) {
             incrementItemQuantity(itemId);
@@ -122,7 +120,7 @@ function Store({ miniCartCount, setMiniCartCount }) {
     }
 
     function decrementItemQuantity(itemId) {
-        console.log('decrementItemQuantity', itemId);
+        // console.log('decrementItemQuantity', itemId);
         const found = cartItems.find((item) => item.id === itemId );
 
         if (!found) {
@@ -131,7 +129,6 @@ function Store({ miniCartCount, setMiniCartCount }) {
 
         // If the current quantity is 1, remove it from the cart.
         if (found.quantity === 1) {
-            console.log('quantity 1');
             setCartItems(
                 cartItems.filter((item) => {
                     return item.id !== itemId;
@@ -150,7 +147,7 @@ function Store({ miniCartCount, setMiniCartCount }) {
     }
 
     function deleteItemFromCart(itemId) {
-        console.log('deleteItemFromCart', itemId);
+        // console.log('deleteItemFromCart', itemId);
         setCartItems(
             cartItems.filter((item) => {
                 return item.id !== itemId;
