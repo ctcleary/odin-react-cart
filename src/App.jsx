@@ -1,39 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import "./App.css";
 import { Route, Routes, Link } from "react-router-dom";
 import Home from "./Home";
 import Store from "./Store";
 import Contact from "./Contact";
 import ErrorPage from "./ErrorPage";
-import MiniCart from './MiniCart';
-
-// const useFetchedStoreItems = () => {
-//   const [itemData, setItemData] = useState([]);
-//   const [error, setError] = useState(null);
-//   const [loading, setLoading] = useState(true);
-
-//   // Skip actual fetching during development.
-//   // -----
-//   useEffect(() => {
-//     fetch('https://fakestoreapi.com/products')
-//       .then((response) => {
-//         if (response.stats >= 400) {
-//           throw new Error('Server error');
-//         }
-
-//         return response.json();
-//       })
-//       .then((json) => {
-//           console.log('itemData json', json);
-//           setItemData(json);
-//       })
-//       .catch((error) => { setError(error) })
-//       .finally(() => setLoading(false));
-//   }, []);
-
-
-//   return { itemData, error, loading };
-// }
 
 function App() {
     const [miniCartCount, setMiniCartCount] = useState(0);

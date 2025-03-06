@@ -43,7 +43,6 @@ function StoreItem({
                         />
                         <div className="store-item-id">--ID: {item.id}--</div>
                         <div className="store-item-name">{item.title}</div>
-                        {/* <div className="store-item-rating">Rating: {item.rating.rate} / 5 <span className="item-rating-count">({item.rating.count})</span></div> */}
                         <RatingStars rating={item.rating.rate} ratingCount={item.rating.count} />
                         <div className="store-item-description">{item.description}</div>
                     </div>

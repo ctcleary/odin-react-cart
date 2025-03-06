@@ -28,7 +28,6 @@ function StoreItems({
                     return (
                         <div key={item.id} className="item-card">
                             { cartItems.find(cartItem=>cartItem.id===item.id)?.quantity > 0 ? (
-                                // <>TEMP + and -</>
                                 <QuantityAdjuster 
                                     itemId={item.id}
                                     currentQuantity={cartItems.find(cartItem=>cartItem.id===item.id)?.quantity || 0}
@@ -55,7 +54,6 @@ function StoreItems({
                                 </div>
                                 <p className="item-id">--ID: {item.id}--</p>
                                 <p className="item-name">{item.title}</p>
-                                {/* <p className="item-rating">Rating: {item.rating.rate} / 5 <span className="item-rating-count">({item.rating.count})</span></p> */}
                                 <RatingStars rating={item.rating.rate} ratingCount={item.rating.count} />
                                 <p className="item-price">{pricify(item.price)}</p>
                             </Link>

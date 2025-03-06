@@ -80,7 +80,6 @@ a.item-card-link:hover {
 }
 .item-card .add-item:hover {
     background-color: lightgreen;
-    /* width: 3rem; */
 }
 
 .item-card .item-rating {

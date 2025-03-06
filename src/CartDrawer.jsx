@@ -1,7 +1,5 @@
-import { useState } from 'react';
 import './CartDrawer.css';
 import CartItem from './CartItem';
-import pricify from './pricify';
 import getTotalPrice from './getTotalPrice';
 import { Link } from 'react-router-dom';
 
@@ -33,14 +31,6 @@ const CartDrawer = ({
             {
                 !cartItems.length ? (
                     <div>No items</div>
-                // ) : cartItems.map((cartItem) => {
-                //     return (
-                //         <div className="cart-item" key={cartItem.id}>
-                //             {cartItem.itemInfo.title}
-                //         </div> 
-                //     );
-                //     }
-                // )
                 ) : cartItems.map((cartItem) => {
                         return (
                             <CartItem key={cartItem.id}
@@ -57,7 +47,6 @@ const CartDrawer = ({
             <div className="cart-drawer-checkout-container">
                 <div className="cart-drawer-total">Total: {getTotalPrice(cartItems)}</div>
                 <div className="cart-drawer-checkout">
-                    {/* <button type="button">Checkout</button> */}
                     <Link className="checkout-link" to="/store/checkout">Checkout</Link>
                 </div>
             </div>
