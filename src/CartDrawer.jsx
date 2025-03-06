@@ -5,20 +5,27 @@ import pricify from './pricify';
 import getTotalPrice from './getTotalPrice';
 import { Link } from 'react-router-dom';
 
-const CartDrawer = ({ cartItems, incrementItemQuantity, decrementItemQuantity, deleteItemFromCart }) => {
-    const [isShown, setIsShown] = useState(false);
+const CartDrawer = ({
+    cartItems,
+    incrementItemQuantity,
+    decrementItemQuantity,
+    deleteItemFromCart,
+    drawerIsShown,
+    setDrawerIsShown
+}) => {
+        
 
     function toggleShown() {
-        setIsShown(!isShown);
+        setDrawerIsShown(!drawerIsShown);
     }
 
 
 
     return (
-        <div className={isShown ? "cart-drawer" : "cart-drawer minimized"}>
+        <div className={drawerIsShown ? "cart-drawer" : "cart-drawer minimized"}>
             <div className="cart-drawer-header">
                 <button onClick={toggleShown} id="cart-drawer-toggle" type="button">
-                    {isShown ? <>&gt;&gt;</> : <>&lt;&lt;</> }
+                    {drawerIsShown ? <>&gt;&gt;</> : <>&lt;&lt;</> }
                 </button>
                 <h2 className="cart-drawer-headline">Cart</h2>
             </div>
@@ -50,8 +57,8 @@ const CartDrawer = ({ cartItems, incrementItemQuantity, decrementItemQuantity, d
             <div className="cart-drawer-checkout-container">
                 <div className="cart-drawer-total">Total: {getTotalPrice(cartItems)}</div>
                 <div className="cart-drawer-checkout">
-                    <button type="button">Checkout</button>
-                    <Link to="/store/checkout">Checkout</Link>
+                    {/* <button type="button">Checkout</button> */}
+                    <Link className="checkout-link" to="/store/checkout">Checkout</Link>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import './CartItem.css';
 import pricify from "./pricify";
 import QuantityAdjuster from './QuantityAdjuster';
+import RatingStars from './RatingStars';
 
 function CartItem({ item, incrementItemQuantity, decrementItemQuantity, deleteItemFromCart }) {
     
@@ -12,7 +13,8 @@ function CartItem({ item, incrementItemQuantity, decrementItemQuantity, deleteIt
             <div className="cart-item-info">
                 <div className="cart-item-id">--ID: {item.itemInfo.id}--</div>
                 <div className="cart-item-name">{item.itemInfo.title}</div>
-                <div className="cart-item-rating">Rating: {item.itemInfo.rating.rate} / 5 <span className="item-rating-count">({item.itemInfo.rating.count})</span></div>
+                {/* <div className="cart-item-rating">Rating: {item.itemInfo.rating.rate} / 5 <span className="item-rating-count">({item.itemInfo.rating.count})</span></div> */}
+                <RatingStars rating={item.itemInfo.rating.rate} ratingCount={item.itemInfo.rating.count} />
                 {/* <div className="cart-item-description">{item.description}</div> */}
             </div>
             <div className="cart-item-price-info">

@@ -8,7 +8,7 @@
 }
 
 .rating-stars-empty,
-.rating-stars-full {
+.rating-stars-full-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -16,15 +16,13 @@
     height: 100%;
 }
 
+.rating-stars-full-container {
+    overflow: hidden;
+}
+
 .rating-stars-count {
     position: absolute;
     font-size: 0.9rem;
     left: 86px;
     font-style: italic;
-}
-
-
-.rating-stars-full {
-    background:url('./assets/stars_full.png');
-    height: 20px;
 }

@@ -11,7 +11,9 @@ function RatingStars({ rating, ratingCount }) {
     return (
         <div className="rating-stars">
             <img className="rating-stars-empty" src={starsEmpty} alt={`Rating: ${rating} / 5`}/>
-            <div className="rating-stars-full" style={{ width: widthStr }}></div>
+            <div className="rating-stars-full-container" style={{ width: widthStr }}>
+                <img className="rating-stars-full" src={starsFull} alt={`Rating: ${rating} / 5`}/>
+            </div>
             <span className="rating-stars-count">({ratingCount})</span>
         </div>
     )

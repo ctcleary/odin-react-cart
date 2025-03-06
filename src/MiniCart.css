@@ -2,4 +2,12 @@
     display: block;
     text-align: right;
     max-width: var(--max-width);
+    margin-bottom: 1rem;
+    
+    place-self: end;
+}
+
+.mini-cart button {
+    background: green;
+    color: white;
 }

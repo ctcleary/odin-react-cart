@@ -1,16 +1,19 @@
 import CartDrawer from './CartDrawer';
 import QuantityAdjuster from './QuantityAdjuster';
+import RatingStars from './RatingStars';
 import './StoreItem.css';
 // import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function StoreItem({
-        storeItems,
-        cartItems,
-        incrementItemQuantity,
-        decrementItemQuantity,
-        deleteItemFromCart,
-    }) {
+    storeItems,
+    cartItems,
+    incrementItemQuantity,
+    decrementItemQuantity,
+    deleteItemFromCart,
+    drawerIsShown,
+    setDrawerIsShown,
+}) {
     const params = useParams();
 
     console.log('StoreItem storeItems', storeItems);
@@ -40,7 +43,8 @@ function StoreItem({
                         />
                         <div className="store-item-id">--ID: {item.id}--</div>
                         <div className="store-item-name">{item.title}</div>
-                        <div className="store-item-rating">Rating: {item.rating.rate} / 5 <span className="item-rating-count">({item.rating.count})</span></div>
+                        {/* <div className="store-item-rating">Rating: {item.rating.rate} / 5 <span className="item-rating-count">({item.rating.count})</span></div> */}
+                        <RatingStars rating={item.rating.rate} ratingCount={item.rating.count} />
                         <div className="store-item-description">{item.description}</div>
                     </div>
                 </div>
@@ -51,6 +55,8 @@ function StoreItem({
                 incrementItemQuantity={incrementItemQuantity}
                 decrementItemQuantity={decrementItemQuantity}
                 deleteItemFromCart={deleteItemFromCart}
+                drawerIsShown={drawerIsShown} 
+                setDrawerIsShown={setDrawerIsShown}
             />
         </>
     )

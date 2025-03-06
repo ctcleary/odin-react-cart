@@ -7,7 +7,16 @@ import QuantityAdjuster from "./QuantityAdjuster";
 import CartDrawer from "./CartDrawer";
 import RatingStars from "./RatingStars";
 
-function StoreItems({ storeItems, cartItems, addItemToCart, incrementItemQuantity, decrementItemQuantity, deleteItemFromCart }) {
+function StoreItems({
+    storeItems,
+    cartItems,
+    addItemToCart,
+    incrementItemQuantity,
+    decrementItemQuantity,
+    deleteItemFromCart,
+    drawerIsShown,
+    setDrawerIsShown,
+}) {
 
     return (
         <>
@@ -61,6 +70,8 @@ function StoreItems({ storeItems, cartItems, addItemToCart, incrementItemQuantit
                 incrementItemQuantity={incrementItemQuantity}
                 decrementItemQuantity={decrementItemQuantity}
                 deleteItemFromCart={deleteItemFromCart}
+                drawerIsShown={drawerIsShown} 
+                setDrawerIsShown={setDrawerIsShown}
             />
         </>
     )

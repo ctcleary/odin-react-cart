@@ -6,8 +6,9 @@
     width: 80ch;
     /* width: 60%; */
     height: 70vh;
-    background: #ccc;
+    background: #f1f1f1;
     border: thin solid black;
+    border-radius: 10px;
     transition: right 0.35s;
 }
 .cart-drawer.minimized {
@@ -19,6 +20,11 @@
     line-height: 3rem;
     padding: 0.5rem 0;
     margin: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    background: green;
+    color: white;
 }
 
 #cart-drawer-toggle {
@@ -35,7 +41,7 @@
 
 .cart-drawer-items {
     overflow-y: scroll;
-    max-height: calc(100% - 8rem);
+    max-height: calc(100% - 10.5rem);
 }
 
 .cart-item:first-of-type {
@@ -55,7 +61,7 @@
     padding: 0;
     bottom: 0;
     right: 0;
-    background: grey;
+    background: green
 }
 
 .cart-drawer-total {
@@ -64,5 +70,17 @@
 }
 
 .cart-drawer-checkout {
-    padding: 0.5rem;
+    padding: 1.25rem;
+}
+
+.checkout-link {
+    background: white;
+    color: black;
+    border-radius: 10px;
+    padding: 0.75rem;
+}
+
+.checkout-link:hover {
+    background: rgb(231, 231, 231);
+    color: green;
 }

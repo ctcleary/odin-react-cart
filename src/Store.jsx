@@ -18,32 +18,36 @@ function Store({ miniCartCount, setMiniCartCount }) {
     const [storeItems, setStoreItems] = useState([]);
 
     const [attemptedLoadCartItems, setAttemptedLoadCartItems] = useState(false);
+
+    const [drawerIsShown, setDrawerIsShown] = useState(false);
     
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     
     useEffect(() => {
-        // fetch('https://fakestoreapi.com/products')
-        //     .then((response) => {
-        //         if (response.stats >= 400) {
-        //         throw new Error('Server error');
-        //         }
+        fetch('https://fakestoreapi.com/products')
+            .then((response) => {
+                if (response.stats >= 400) {
+                throw new Error('Server error');
+                }
         
-        //         return response.json();
-        //     })
-        //     .then((json) => {
-        //         console.log('itemData json', json);
-        //         setStoreItems(json);
-        //     })
-        //     .catch((error) => { setError(error) })
-        //     .finally(() => { setLoading(false) });
+                return response.json();
+            })
+            .then((json) => {
+                console.log('itemData json', json);
+                setStoreItems(json);
+                loadStoredCartItems(tempStoreItems);
+                setAttemptedLoadCartItems(true);
+            })
+            .catch((error) => { setError(error) })
+            .finally(() => { setLoading(false) });
 
-        setTimeout(() => {
-            console.log('set temp store items');
-            setStoreItems(tempStoreItems);
-            loadStoredCartItems(tempStoreItems);
-            setAttemptedLoadCartItems(true);
-        }, 1000);
+        // setTimeout(() => {
+        //     console.log('set temp store items');
+        //     setStoreItems(tempStoreItems);
+        //     loadStoredCartItems(tempStoreItems);
+        //     setAttemptedLoadCartItems(true);
+        // }, 1000);
     }, []);
 
     useEffect(() => {
@@ -156,12 +160,17 @@ function Store({ miniCartCount, setMiniCartCount }) {
 
 
     
-    // if (loading) { return <div>Loading...</div> }
-    // if (error) { return <div>An error has occurred!</div>}
+    if (loading) { return <div>Loading...</div> }
+    if (error) { return <div>An error has occurred!</div>}
 
     return (
         <>
-            <MiniCart miniCartCount={miniCartCount} />
+            <MiniCart
+                storeItems={storeItems}
+                miniCartCount={miniCartCount}
+                drawerIsShown={drawerIsShown}
+                setDrawerIsShown={setDrawerIsShown} 
+            />
             <Routes>
                 <Route path="/" 
                     element={<StoreItems
@@ -171,6 +180,8 @@ function Store({ miniCartCount, setMiniCartCount }) {
                         incrementItemQuantity={incrementItemQuantity}
                         decrementItemQuantity={decrementItemQuantity}
                         deleteItemFromCart={deleteItemFromCart}
+                        drawerIsShown={drawerIsShown} 
+                        setDrawerIsShown={setDrawerIsShown}
                     />}
                 />
                 <Route path="/:itemId"
@@ -181,6 +192,8 @@ function Store({ miniCartCount, setMiniCartCount }) {
                         incrementItemQuantity={incrementItemQuantity}
                         decrementItemQuantity={decrementItemQuantity}
                         deleteItemFromCart={deleteItemFromCart}
+                        drawerIsShown={drawerIsShown} 
+                        setDrawerIsShown={setDrawerIsShown}
                     />}
                 />
                 <Route path="/checkout"
