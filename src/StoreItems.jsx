@@ -38,10 +38,10 @@ function StoreItems({
                                     withDelete={false}
                                 />
                             ): (
-                                <button type="button" className="add-item">
-                                    <span className="add-item-text"
-                                        onClick={() => addItemToCart(item.id)}
-                                    >
+                                <button type="button" className="add-item"
+                                    onClick={() => addItemToCart(item.id)}
+                                >
+                                    <span className="add-item-text">
                                         +
                                     </span>
                                 </button>
